@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from transformers import pipeline
+
 # =========================
 # ENV
 # =========================
@@ -43,11 +43,7 @@ indices_obj: Any = None
 tfidf_matrix: Any = None
 tfidf_obj: Any = None
 TITLE_TO_IDX: Optional[Dict[str, int]] = None
-emotion_classifier = pipeline(
-    "text-classification",
-    model="j-hartmann/emotion-english-distilroberta-base",
-    return_all_scores=False
-)
+
 # =========================
 # MODELS
 # =========================
@@ -244,14 +240,7 @@ async def attach_tmdb_card_by_title(title: str) -> Optional[TMDBMovieCard]:
         )
     except Exception:
         return None
-def get_mood(text: Optional[str]) -> Optional[str]:
-    if not isinstance(text, str) or not text.strip():
-        return None
-    try:
-        result = emotion_classifier(text[:512])[0]
-        return result['label']
-    except:
-        return None
+
 # =========================
 # STARTUP: LOAD PICKLES
 # =========================
@@ -402,7 +391,7 @@ async def search_bundle(
         if 'topic_id' in df.columns:
             query_topic_id = int(df.iloc[local_idx]['topic_id'])
     except Exception:
-        query_mood = get_mood(details.overview)
+        query_mood = None
         query_topic_id = None  # No fallback for topic_id without model
     # 1) TF-IDF recommendations (modified with mood/topic boost, never crash endpoint)
     tfidf_items: List[TFIDFRecItem] = []
