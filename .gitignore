@@ -1,0 +1,43 @@
+# ==========================
+# PYTHON / FASTAPI BACKEND
+# ==========================
+venv/
+env/
+ENV/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+*.db
+*.log
+
+# Model files (if you don't want to push them)
+# models/*.pkl
+
+# Local env variables
+.env
+
+# IDE folders
+.vscode/
+.idea/
+
+# ==========================
+# NODE / REACT FRONTEND
+# ==========================
+node_modules/
+dist/
+build/
+*.local
+
+# Env for Vite / Frontend
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ==========================
+# OS / EDITOR GENERATED
+# ==========================
+.DS_Store
+Thumbs.db
