@@ -19,7 +19,7 @@ const PosterGrid: React.FC<Props> = ({ cards, title, isLoading, error }) => {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
         {Array.from({ length: 12 }).map((_, idx) => (
-          <div key={idx} className="aspect-[2/3] bg-slate-800 rounded-2xl animate-pulse" />
+          <div key={idx} className="aspect-2/3 bg-slate-800 rounded-2xl animate-pulse" />
         ))}
       </div>
     );
@@ -39,7 +39,7 @@ const PosterGrid: React.FC<Props> = ({ cards, title, isLoading, error }) => {
             key={movie.tmdb_id}
             className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            <div className="aspect-[2/3] bg-slate-800 overflow-hidden">
+            <div className="aspect-2/3 bg-slate-800 overflow-hidden">
               {movie.poster_url ? (
                 <img
                   src={movie.poster_url}
@@ -52,7 +52,7 @@ const PosterGrid: React.FC<Props> = ({ cards, title, isLoading, error }) => {
                 </div>
               )}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 transition-transform">
               <p className="text-sm font-medium text-white line-clamp-2">{movie.title}</p>
             </div>
